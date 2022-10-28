@@ -1,5 +1,16 @@
 import random
 
+player1_wager=500
+player2_wager=500
+player1_win=0
+player2_win=0
+
+def come_out_phase():
+   
+    
+
+    
+
 def shooters():
     shooter=" "
     player1_bet=" "
@@ -12,7 +23,7 @@ def shooters():
         shooter=player2
     else:
         print("Invalid Input")
-    print("In placing the betting chips, kinly note this;")
+    print("In placing your bet, kindly note this;")
     print("'PL' stands for Pass line bet")
     print("'DP' stands for Don\'t pass bet")
 
