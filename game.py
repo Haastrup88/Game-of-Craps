@@ -6,7 +6,6 @@ class Dice(object):
         self.dice1=dice1
         self.dice2=dice2
         self.points=[4,5,6,8,9,10]
-        allowable_odds=3
     def roll(self):
         return(f"Dice Outcome:{self.dice1},{self.dice2}")
 
@@ -45,16 +44,32 @@ class Player(Table):
 
     def Name(self):
         print(f"Player name is {self.name}")
+
 class bets(Player):
-    def __init__(self,dice1,dice2,name,pass_line,donot_bet,odd_bet):
+    def __init__(self,dice1,dice2,name):
         super().__init__(dice1,dice2,name)
-        
+        self.allowable_odds=200
+        self.option=["pass","don\'t pass"]
+        while True:
+            self.player_status=str(input("Where are you placing your bet,('Pass'/Don\'t Pass)?"))
+            if(self.player_status not in self.option):
+                continue
+            if (self.player_status in self.option):
+                 break
     
     def passline(self):
-        pass
+        if self.player_status==self.option[0]:
+            return(f"{self.name} Status:{self.player_status} bet")
+        else:
+            pass
     def do_not_pass(self):
-        pass
+        if self.player_status==self.option[1]:
+            return(f"{self.name} Status:{self.player_status} bet")
+        else:
+            pass
     def oddbet(self):
+        pass
+    def insufficient_fund(self):
         pass
 
 def main():
@@ -65,8 +80,11 @@ def main():
     print(f"Welcome {player}")
 
 
-    result=Player(random.randint(1,6),random.randint(1,6),player)
+    result=bets(random.randint(1,6),random.randint(1,6),player)
     print(result.roll())
     print(result.point_outcome())
     print(result.Bankroll())
+    print(result.passline())
+    print(result.do_not_pass())
+    
 main()
