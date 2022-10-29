@@ -1,5 +1,6 @@
 from logging import exception
 import random
+from unittest import result
 round=1
 
 class Dice(object):
@@ -83,6 +84,7 @@ class bets(Player):
             return(f"{self.name} Status:{self.player_status} bet")
         else:
             pass
+
     def do_not_pass(self):
         if self.player_status.lower().strip()==self.option[1]:
             return(f"{self.name} Status:{self.player_status} bet")
@@ -96,38 +98,72 @@ class bets(Player):
         pass
 
 def come_out_phase():
-    print("This is come out phase")
+    print(f"Dealer button {result.point}")
+    print(f"Craps")
+    if result.player_status==result.option[0]:
+        result.bankroll=result.bankroll-result.bet
+    elif(result.player_status==result.option[1]):
+       result.bankroll=result.bankroll+result.bet 
+       print(result.bankroll)
+    elif(outcome=='7'):
+        point_phase()
+    else:
+        pass
 
 def point_phase():
-    print("This is point out phase")
+    print(f"Dealer button: {result.point}")
+    result.bankroll=result.bankroll
+    if sum(list(result.dice_result)) in points:
+        if result.player_status==result.option[0]:
+            result.bankroll=result.bankroll+result.bet
+        elif(result.player_status==result.option[1]):
+            result.bankroll=result.bankroll-result.bet
+        else:
+            pass
+    if (outcome=='7'):
+        if result.player_status==result.option[0]:
+            result.bankroll=result.bankroll-result.bet
+        elif(result.player_status==result.option[1]):
+            result.bankroll=result.bankroll+result.bet
+    print(result.bankroll)
+
 
 
 def main():
-    print("***This is GAME OF CRAPS***")
-    print("**Kindly respond to the questions below;")
-    player=input("Enter your name:")
-    print(f"Welcome {player}")
+    global result
+    global points
+    global come_out
+    global outcome
+    round=1
+    if round==1:
 
-
+        print("***This is GAME OF CRAPS***")
+        print("**Kindly respond to the questions below;")
+        
+        player=input("Enter your name:")
+        print(f"Welcome {player}")
+    else:
+        pass
     result=bets(random.randint(1,6),random.randint(1,6),player)
     points=[4,5,6,8,9,10]
     come_out=[2,3,12]
-    round=1
     while(result.bet<result.Total):
         rolling=input("Are you reading to roll:")
         if(rolling.lower().strip()=='yes'):
-            if result.player_status[0]==True:
+            print(f"Dice result:{result.roll()}")
+            outcome=sum(list(result.dice_result))
+            print(f"Dice total:{outcome}")
+            if outcome in come_out:
                 come_out_phase()
-            else:
+            elif outcome in points:
                 point_phase()
+            else:
+                pass
             round=round+1
+            print(round)
         else:
             print(f"Thank you, your finishing status is {result.information} after {round} rounds")
             break
-            
-            
-        
 
-    
-    
+            
 main()
