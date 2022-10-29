@@ -5,38 +5,54 @@ class Dice(object):
     def __init__(self,dice1,dice2):
         self.dice1=dice1
         self.dice2=dice2
+        self.points=[4,5,6,8,9,10]
     def roll(self):
-        return(f"Outcome:{self.dice1},{self.dice2}")
+        return(f"Dice Outcome:{self.dice1},{self.dice2}")
 
 class Table(Dice):
-    def __init__(self,dice1,dice2,point):
+    def __init__(self,dice1,dice2):
         super().__init__(dice1,dice2)
-        self.point=point
-    def point(self):
-        return(f"Point:{self.point}")
+
+        if sum(list((self.dice1,self.dice2))) not in self.points:
+            self.point="Off"
+        else:
+            self.point="On"
+    def point_outcome(self):
+        print(f"Point_Outcome:{self.point}")
 
 class Player(Table):
-    def __init__(self,dice1,dice2,point,name):
-        super().__init__(dice1,dice2,point)
+    def __init__(self,dice1,dice2,name):
+        super().__init__(dice1,dice2)
         self.name=name
+        #self.bankroll=bankroll
 
-    def bankroll(self):
+        self.bankroll=input(f" {self.name}, How much money they have on the table?").replace("$"," ")
         try:
-          amount=input(f" {self.name}, what is your bankroll?")
-        except:
-            print("Bankroll must be more than 10 dollars")
-            amount=0
-        return(amount) 
+            self.bankroll=int(self.bankroll)
+            if self.bankroll<100:
+                print("Bankroll must be at least $100")
+        except ValueError:
+            print("bankroll is not convertible into a dollar amount")
+
+
+
+    def Bankroll(self):
+        return(f"Your bankroll is {self.bankroll}")
         
 
     def Name(self):
         print(f"Player name is {self.name}")
 
+def main():
 
-print("***This is GAME OF CRAPS***")
-print("**Kindly respond to the questions below;")
-player=input("Enter your name:")
-print(f"Welcome {player}")
+    print("***This is GAME OF CRAPS***")
+    print("**Kindly respond to the questions below;")
+    player=input("Enter your name:")
+    print(f"Welcome {player}")
 
-result=Player(random.randint(1,6),random.randint(1,6),"Off",player)
-print(result.bankroll())
+
+    result=Player(random.randint(1,6),random.randint(1,6),player)
+    print(result.roll())
+    print(result.point_outcome())
+    print(result.Bankroll())
+main()
