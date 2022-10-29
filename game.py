@@ -6,6 +6,7 @@ class Dice(object):
         self.dice1=dice1
         self.dice2=dice2
         self.points=[4,5,6,8,9,10]
+        allowable_odds=3
     def roll(self):
         return(f"Dice Outcome:{self.dice1},{self.dice2}")
 
@@ -14,9 +15,9 @@ class Table(Dice):
         super().__init__(dice1,dice2)
 
         if sum(list((self.dice1,self.dice2))) not in self.points:
-            self.point="Off"
+            self.point="OFF"
         else:
-            self.point="On"
+            self.point="ON"
     def point_outcome(self):
         print(f"Point_Outcome:{self.point}")
 
@@ -26,15 +27,17 @@ class Player(Table):
         self.name=name
         #self.bankroll=bankroll
 
-        self.bankroll=input(f" {self.name}, How much money they have on the table?").replace("$"," ")
-        try:
-            self.bankroll=int(self.bankroll)
-            if self.bankroll<100:
-                print("Bankroll must be at least $100")
-        except ValueError:
-            print("bankroll is not convertible into a dollar amount")
-
-
+        while True:
+            self.bankroll=input(f" {self.name}, How much money they have on the table?").replace("$"," ")
+            try:
+                self.bankroll=int(self.bankroll)
+                if self.bankroll<100:
+                    print("Bankroll must be at least $100")
+                    continue
+                else:
+                    break
+            except ValueError:
+                print("Bankroll is not convertible into a dollar amount")
 
     def Bankroll(self):
         return(f"Your bankroll is {self.bankroll}")
@@ -42,6 +45,17 @@ class Player(Table):
 
     def Name(self):
         print(f"Player name is {self.name}")
+class bets(Player):
+    def __init__(self,dice1,dice2,name,pass_line,donot_bet,odd_bet):
+        super().__init__(dice1,dice2,name)
+        
+    
+    def passline(self):
+        pass
+    def do_not_pass(self):
+        pass
+    def oddbet(self):
+        pass
 
 def main():
 
