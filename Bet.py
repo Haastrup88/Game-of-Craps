@@ -40,7 +40,7 @@ class bets(Player.Player):
         return(f"Your bet is {self.bet}")
         
     def info(self):
-        print(f"Your bet is{self.bet}, and type is {type(self.bet)}")
+        #print(f"Your bet is{self.bet}, and type is {type(self.bet)}")
         
         return(f"Status: {self.information}")
     def update_details(self):

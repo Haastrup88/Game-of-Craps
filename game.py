@@ -2,7 +2,6 @@ import Bet
 import Player
 import Table
 def come_out_phase(result):
-    print(round)
     print(result.update_details())
     print(f"Dealer button {result.point}")
     print(f"Craps")
@@ -28,7 +27,6 @@ def come_out_phase(result):
     return(result.info())
 
 def point_phase(result):
-    print(round)
     print(result.update_details())
     print(f"Dealer button: {result.point}")
     print(result.update_bankroll(result.bet))
