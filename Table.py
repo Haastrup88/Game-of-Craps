@@ -2,8 +2,9 @@ import Dice
 class Table(Dice.Dice):
     def __init__(self):
         super().__init__()
+        self.points=[4,5,6,8,9,10]
 
-        if sum(list((self.dice1,self.dice2))) not in self.points:
+        if self.dice_result in self.points:
             self.point="OFF"
         else:
             self.point="ON"
