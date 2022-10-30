@@ -2,7 +2,6 @@ import Bet
 import time
 
 def come_out_phase(result):
-    print(result.point)
     print(f"Game type:Craping")
     opt_1=[7,11]
     opt_2=[2,3,12]
@@ -37,7 +36,6 @@ def come_out_phase(result):
     #return(result.info())
 
 def point_phase(result):
-    print(result.point)
     print(result.update_details())
     #print(result.update_bankroll(result.bet))
     time.sleep(2.5) 
