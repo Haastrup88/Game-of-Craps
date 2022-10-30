@@ -44,6 +44,6 @@ class bets(Player.Player):
         
         return(f"Status: {self.information}")
     def update_details(self):
-        info_update={"Name":self.name,"Bankroll":self.bankroll,"Bet Status":self.player_status,"Bet":self.bet}
+        info_update={"Name":self.name,"Bankroll":self.bankroll,"Bet Status":self.player_status,"Bet":self.bet,"Dealer Status":self.point,"Dice Result":self.result}
         return(info_update)
  
