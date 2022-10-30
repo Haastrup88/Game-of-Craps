@@ -4,13 +4,14 @@ from unittest import result
 round=1
 
 class Dice(object):
-    def __init__(self,dice1=random.randint(1,6),dice2=random.randint(1,6)):
+    def __init__(self,dice1=6,dice2=6):
         self.dice1=dice1
         self.dice2=dice2
-        self.dice_result=((self.dice1,self.dice2))
+        self.diceRoll1=random.randint(1,self.dice1)
+        self.diceRoll2=random.randint(1,self.dice2)
         self.points=[4,5,6,8,9,10]
     def roll(self):
-        return(f"Dice Outcome:{self.dice_result}")
+        return((self.diceRoll1,self.diceRoll2))
 
 class Table(Dice):
     def __init__(self,dice1,dice2):
@@ -36,7 +37,7 @@ class Player(Table):
                 print(f"Welcome{self.name}")
                 break
         while True:
-            self.bankroll=input(f" {self.name}, How much money they have on the table?").replace("$"," ")
+            self.bankroll=input(f" {self.name}, How much money do you have on the table?").replace("$"," ")
             try:
                 self.bankroll=int(self.bankroll)
                 if self.bankroll<100:
@@ -102,6 +103,7 @@ class bets(Player):
 
 def come_out_phase():
     print(round)
+    print((result.info()))
     print(f"Dealer button {result.point}")
     print(f"Craps")
     if result.player_status==result.option[0]:
@@ -122,9 +124,11 @@ def come_out_phase():
         point_phase()
     else:
         pass
+    return(result.info())
 
 def point_phase():
     print(round)
+    print((result.info()))
     print(f"Dealer button: {result.point}")
     print(result.bankroll)
     update()
@@ -140,14 +144,14 @@ def point_phase():
             result.bankroll=result.bankroll-result.bet
         elif(result.player_status==result.option[1]):
             result.bankroll=result.bankroll+result.bet
-    print(result.bankroll)
+    return(result.info())
 
 
 
 
 points=[4,5,6,8,9,10]
 come_out=[2,3,12]
-
+results=Dice(2)
 def main():
     global result
     result=bets(random.randint(1,6),random.randint(1,6))
@@ -163,8 +167,8 @@ def update():
     round=1
     rolling=input("Are you reading to roll:")
     if(rolling.lower().strip()=='yes'):
-        print(f"Dice result:{result.roll()}")
-        outcome=sum(list(result.dice_result))
+        print(f"Dice result:{results.roll()}")
+        outcome=sum(list(results.roll()))
         print(f"Dice total:{outcome}")
         if outcome in come_out or outcome=='7':
             come_out_phase()
