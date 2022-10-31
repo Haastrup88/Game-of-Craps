@@ -55,7 +55,7 @@ def point_phase(result):
 points=[4,5,6,8,9,10]
 come_out=[2,3,12,7,11]
 
-def main():
+def main():#The initialization function
     start_game()
 
 def start_game():
