@@ -2,11 +2,10 @@ import Bet
 import time
 
 def come_out_phase(result):
-    round=0
-    print(f"Game type:Craping")
+    print(f"Game type:Crapping")
     opt_1=[7,11]
     opt_2=[2,3,12]
-    if outcome in opt_2:
+    if result.dice_result in opt_2:
         if result.player_status==result.option[0]:
             result.bankroll=result.bankroll-result.bet
             # time.sleep(2.5)
@@ -17,7 +16,7 @@ def come_out_phase(result):
             result.bankroll=result.bankroll+result.bet
             # time.sleep(2.5) 
             print(result.update_details())
-    if outcome in opt_1:
+    elif (result.dice_result in opt_1):
         if result.player_status==result.option[0]:
             result.bankroll=result.bankroll+result.bet
             # time.sleep(2.5) 
@@ -34,7 +33,7 @@ def come_out_phase(result):
         point_phase(result)
     else:
         pass
-    #return(result.info())
+   
 
 def point_phase(result):
     if (result.dice_result != 7):
