@@ -2,6 +2,7 @@ import Bet
 import time
 
 def come_out_phase(result):
+    round=0
     print(f"Game type:Craping")
     opt_1=[7,11]
     opt_2=[2,3,12]
@@ -71,11 +72,11 @@ come_out=[2,3,12,7,11]
 
 def main():
     result=Bet.bets()
-    verify=input(f"If i am correct, your information is; {result.information},yes/no:")
-    if verify.lower().strip()=='yes':
-        update(result)
+    if result.betting_turn()=='no':
+        print("Thank you")
+  
     else:
-        print(f"Kindly run the program again to input the correct data") 
+        print(update(result))
 
 def update(result):
     global outcome
