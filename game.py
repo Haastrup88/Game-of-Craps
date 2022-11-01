@@ -97,7 +97,7 @@ def update(result):
             pass
       
     else:
-        pass
+        print("Thank you")
         
 
 main()

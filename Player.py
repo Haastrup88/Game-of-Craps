@@ -27,7 +27,7 @@ class Player(Table.Table):
                 print("Bankroll is not convertible into a dollar amount")
 
     def Bankroll(self):
-        return(f"Your bankroll is {self.bankroll}")
+        return(f"Your bankroll is {self.bankroll}") 
     
     def update_bankroll(self,update):
         self.bankroll+=update
