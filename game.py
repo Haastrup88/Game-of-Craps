@@ -16,11 +16,13 @@ def come_out_phase(result):
             result.bankroll=result.bankroll+result.bet
             # time.sleep(2.5) 
             print(result.update_details())
+            start_game()
     elif (result.dice_result in opt_1):
         if result.player_status==result.option[0]:
             result.bankroll=result.bankroll+result.bet
             # time.sleep(2.5) 
             print(result.update_details())
+            start_game()
         else:
             if result.player_status==result.option[1]:
                 result.bankroll=result.bankroll-result.bet
@@ -69,7 +71,7 @@ def start_game():
 
 def point_update(result):
     while True:
-        rolling=input("Are you ready to roll:")
+        rolling=input("Are you ready to roll, Yes/No?:")
         if(rolling.lower().strip()=='yes'):
             result.roll()
             result.set_point()
