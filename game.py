@@ -8,32 +8,34 @@ def come_out_phase(result):
     if result.dice_result in opt_2:
         if result.player_status==result.option[0]:
             result.bankroll=result.bankroll-result.bet
-            # time.sleep(2.5)
+            print("You Lost")
             print(result.update_details())
-            # time.sleep(2.5)
             update(result)
         elif((result.player_status==result.option[1])):
             result.bankroll=result.bankroll+result.bet
+            print("You Won")
+            print("Thank you")
             print(result.update_details())
             start_game()
     elif (result.dice_result in opt_1):
         if result.player_status==result.option[0]:
             result.bankroll=result.bankroll+result.bet
-            # time.sleep(2.5) 
+            print("You Won")
+            print("Thank you")
             print(result.update_details())
             start_game()
         else:
             if result.player_status==result.option[1]:
                 result.bankroll=result.bankroll-result.bet
-                # time.sleep(2.5) 
+                print("You Lost") 
                 print(result.update_details())
+
     else:
         pass
     if (result.dice_result) in points:
         point_phase(result)
     else:
         pass
-    
    
 
 def point_phase(result):
@@ -71,7 +73,7 @@ def start_game():
 
 def odd_bets(result):
     print(point,result.dice_result)
-    if (result.dice_result!=point):
+    if (result.dice_result!=point and result.dice_result!=7):
         point_update(result) 
     elif(result.dice_result==point):
         if(result.dice_result==4 or result.dice_result==10):
@@ -84,17 +86,23 @@ def odd_bets(result):
            result.bankroll=result.bankroll+(result.bet*5)
            print(result.update_details())
         print("You Won the odd bet")
+        start_game()
 
+    elif(result.dice_result==7):
+        if(point==4 or point==10):
+            result.bankroll=result.bankroll-(result.bet*3)
+            print(result.update_details())
+        elif(point==5 or point==9):
+            result.bankroll=result.bankroll-(result.bet*4)
+            print(result.update_details())
+        elif(point==6 or point==8):
+           result.bankroll=result.bankroll-(result.bet*5)
+           print(result.update_details())
+        print("You Lost to the odd bet")
         start_game()
     else:
         pass
         
-
-
-
-
-
-
 
 def point_update(result):
     if(point==4 or point==10):
@@ -111,11 +119,12 @@ def point_update(result):
     if(rolling.lower().strip()=='yes'):
         result.roll()
         print(result.update_details())
-        if (result.dice_result==7 or result.dice_result in [2,3,11,12]):
-            point_phase(result)
 
-        elif(result.dice_result in points):
+        if (result.dice_result in points or result.dice_result==7):
             odd_bets(result)
+
+        elif (result.dice_result==7 or result.dice_result in [2,3,11,12]):
+            point_phase(result)
             
     else:
         pass

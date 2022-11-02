@@ -18,6 +18,7 @@ class bets(Player.Player):
                 
             except ValueError:
                     print("Your wager must be an integer")
+            
 
 
     
@@ -65,7 +66,7 @@ class bets(Player.Player):
         return({"Name":self.name,"Bankroll":self.bankroll,"Bet Status":self.betting_turn(),"Bet":self.bet})
 
     def update_details(self):
-        info_update={"Name":self.name,"Bankroll":self.bankroll,"Bet Status":self.player_status,"Bet":self.bet,"Dealer Status":self.point,"Dice result":self.result}
+        info_update={"Name":self.name,"Closing Balance":self.Bankroll(),"Bet Status":self.player_status,"Bet":self.bet,"Dealer Status":self.point,"Dice result":self.result}
         return(info_update)
 
     
