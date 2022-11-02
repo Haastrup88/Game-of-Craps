@@ -50,9 +50,11 @@ class bets(Player.Player):
                 else:
                     #(player_status.lower().strip() in self.option)   
                     if player_status.lower().strip()==self.option[0]:
+                        self.player_status=self.option[0]
                         print(self.passline())
                         break
                     else:
+                        self.player_status=self.option[1]
                         print(self.do_not_pass())
                         break
             else:
