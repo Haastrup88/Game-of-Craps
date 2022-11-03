@@ -8,7 +8,6 @@ def come_out_phase(result): # This function is invoke when the outcome of the di
         if result.player_status==result.option[0]:
             result.bankroll=result.bankroll-result.bet
             print(f"{result.name} You Lost")
-            result.bet=0
             print(result.update_details())
             update(result)
         elif((result.player_status==result.option[1])):
@@ -28,7 +27,6 @@ def come_out_phase(result): # This function is invoke when the outcome of the di
             if result.player_status==result.option[1]:
                 result.bankroll=result.bankroll-result.bet
                 print(f"{result.name} You Lost") 
-                result.bet=0
                 print(result.update_details())
                 start_game()
 
