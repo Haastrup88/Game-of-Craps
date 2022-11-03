@@ -16,20 +16,21 @@ def come_out_phase(result): # This function is invoke when the outcome of the di
             print(f"{result.name} You Won")
             print(f"Thank you {result.name}")
             print(result.update_details())
-            start_game()
+            update(result)
     elif (result.dice_result in opt_1):
         if result.player_status==result.option[0]:
             result.bankroll=result.bankroll+result.bet
             print(f"{result.name} You Won")
             print(f"Thank you {result.name}")
             print(result.update_details())
-            start_game()
+            update(result)
         else:
             if result.player_status==result.option[1]:
                 result.bankroll=result.bankroll-result.bet
                 print(f"{result.name} You Lost") 
                 result.bet=0
                 print(result.update_details())
+                start_game()
 
     else:
         pass
@@ -87,7 +88,7 @@ def odd_bets(result):# This is odd bet function, and it is invoke when dice outc
            result.bankroll=result.bankroll+(result.bet*5)
            print(result.update_details())
         print(f"{result.name} You Won the odd bet")
-        start_game()
+        update(result)
 
     elif(result.dice_result==7):
         if(point==4 or point==10):
