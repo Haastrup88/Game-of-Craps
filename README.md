@@ -6,4 +6,4 @@ For every round of the game, the game result is printed.
 At point phase, the player is asked to place an odd bet which is either 3x, 4x or 5x, depending on the result.
 Player either win or lose at this point.
 
-Except for crapping,at every win, this code assume the player is done and would prompt user to input their information again for another round.
+Except for every win, this code assume the player is set to play another round with their bet, hence it will prompt them to roll again. At the to hand, if lost, the program assume they are out since they have zero bet.
