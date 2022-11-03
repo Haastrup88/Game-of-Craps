@@ -1,7 +1,7 @@
 import Bet 
 import time
 
-def come_out_phase(result):
+def come_out_phase(result): # This function is invoke when the outcome of the dice is within the range of [2,3,12,7,11]
     print(f"Game type:Crapping")
     opt_1=[7,11]
     opt_2=[2,3,12]
@@ -9,6 +9,7 @@ def come_out_phase(result):
         if result.player_status==result.option[0]:
             result.bankroll=result.bankroll-result.bet
             print("You Lost")
+            result.bet=0
             print(result.update_details())
             update(result)
         elif((result.player_status==result.option[1])):
@@ -28,6 +29,7 @@ def come_out_phase(result):
             if result.player_status==result.option[1]:
                 result.bankroll=result.bankroll-result.bet
                 print("You Lost") 
+                result.bet=0
                 print(result.update_details())
 
     else:
@@ -38,10 +40,10 @@ def come_out_phase(result):
         pass
    
 
-def point_phase(result):
+def point_phase(result):# This function is invoke when the outcome of the dice is within the range of [4,5,6,8,9,10]
     if (result.dice_result != 7):
         print(result.update_details())
-        print("Second phase is activated: It requires you to place odd bet")
+        print("Odds bet is activated: It requires you to place odd bet")
         point_update(result)
     elif(result.dice_result==7):
         if result.player_status==result.option[0]:
@@ -71,7 +73,7 @@ def start_game():
         print(update(result))
 
 
-def odd_bets(result):
+def odd_bets(result):# This is odd bet function, and it is invoke when dice outcome is any of the point value
     print(point,result.dice_result)
     if (result.dice_result!=point and result.dice_result!=7):
         point_update(result) 
@@ -91,12 +93,15 @@ def odd_bets(result):
     elif(result.dice_result==7):
         if(point==4 or point==10):
             result.bankroll=result.bankroll-(result.bet*3)
+            result.bet=0
             print(result.update_details())
         elif(point==5 or point==9):
             result.bankroll=result.bankroll-(result.bet*4)
+            result.bet=0
             print(result.update_details())
         elif(point==6 or point==8):
            result.bankroll=result.bankroll-(result.bet*5)
+           result.bet=0
            print(result.update_details())
         print("You Lost to the odd bet")
         start_game()
@@ -104,13 +109,13 @@ def odd_bets(result):
         pass
         
 
-def point_update(result):
+def point_update(result):# This function is invoke when the dice outcome isn't a 7.
     if(point==4 or point==10):
-        print(f"You are required to make 3X of your initial bet, i.e. 3*{result.bet}")
+        print(f"You are required to make 3X of your initial bet, i.e.{3*result.bet}")
     elif(point==5 or point==9):
-        print(f"You are required to make 4X of your initial bet, i.e. 4*{result.bet}")
+        print(f"You are required to make 4X of your initial bet, i.e. {4*result.bet}")
     elif(point==6 or point==8):
-        print(f"You are required to make 5X of your initial bet, i.e. 5*{result.bet}")
+        print(f"You are required to make 5X of your initial bet, i.e. {5*result.bet}")
 
     else:
         pass
@@ -130,7 +135,7 @@ def point_update(result):
         pass
 
 
-def update(result):
+def update(result):# This function set in after the first initialization and determine if our result is come out phase or point phase
     global outcome
     global point
     rolling=input("Are you ready to roll:")
