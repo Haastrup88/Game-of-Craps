@@ -1,5 +1,4 @@
 import Bet 
-import time
 
 def come_out_phase(result): # This function is invoke when the outcome of the dice is within the range of [2,3,12,7,11]
     print(f"Game type:Crapping")
@@ -8,27 +7,27 @@ def come_out_phase(result): # This function is invoke when the outcome of the di
     if result.dice_result in opt_2:
         if result.player_status==result.option[0]:
             result.bankroll=result.bankroll-result.bet
-            print("You Lost")
+            print(f"{result.name} You Lost")
             result.bet=0
             print(result.update_details())
             update(result)
         elif((result.player_status==result.option[1])):
             result.bankroll=result.bankroll+result.bet
-            print("You Won")
-            print("Thank you")
+            print(f"{result.name} You Won")
+            print(f"Thank you {result.name}")
             print(result.update_details())
             start_game()
     elif (result.dice_result in opt_1):
         if result.player_status==result.option[0]:
             result.bankroll=result.bankroll+result.bet
-            print("You Won")
-            print("Thank you")
+            print(f"{result.name} You Won")
+            print(f"Thank you {result.name}")
             print(result.update_details())
             start_game()
         else:
             if result.player_status==result.option[1]:
                 result.bankroll=result.bankroll-result.bet
-                print("You Lost") 
+                print(f"{result.name} You Lost") 
                 result.bet=0
                 print(result.update_details())
 
@@ -67,7 +66,7 @@ def main():#The initialization function
 def start_game():
     result=Bet.bets()
     if result.betting_turn()=='no':
-        print("Thank you")
+        print(f"Thank you Player {result.name}")
   
     else:
         print(update(result))
@@ -87,7 +86,7 @@ def odd_bets(result):# This is odd bet function, and it is invoke when dice outc
         elif(result.dice_result==6 or result.dice_result==8):
            result.bankroll=result.bankroll+(result.bet*5)
            print(result.update_details())
-        print("You Won the odd bet")
+        print(f"{result.name} You Won the odd bet")
         start_game()
 
     elif(result.dice_result==7):
@@ -103,7 +102,7 @@ def odd_bets(result):# This is odd bet function, and it is invoke when dice outc
            result.bankroll=result.bankroll-(result.bet*5)
            result.bet=0
            print(result.update_details())
-        print("You Lost to the odd bet")
+        print(f"{result.name} You Lost to the odd bet")
         start_game()
     else:
         pass
