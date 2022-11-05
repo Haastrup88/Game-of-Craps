@@ -31,6 +31,7 @@ def come_out_phase(result): # This function is invoke when the outcome of the di
             print(f"Thank you {result.name}")
             print(result.update_details())
             update(result)
+
     elif (result.dice_result in opt_1):
         if result.player_status==result.option[0]:
             result.bankroll=result.bankroll+result.bet
@@ -98,8 +99,8 @@ def pass_bet(result):
                 
         except ValueError:
             print("Your wager must be an integer")
-        result.bet=pass_bet
-        print(update(result))
+    result.bet=pass_bet
+    print(update(result))
     
 
 
