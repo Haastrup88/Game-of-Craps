@@ -7,26 +7,26 @@ def come_out_phase(result): # This function is invoke when the outcome of the di
     if result.dice_result in opt_2:
         if result.player_status==result.option[0]:
             result.bankroll=result.bankroll-result.bet
-            print(f"{result.name} You Lost ${result.bankroll}")
+            print(f"{result.name} You Lost")
             print(result.update_details())
             update(result)
         elif((result.player_status==result.option[1])):
             result.bankroll=result.bankroll+result.bet
-            print(f"{result.name} You Won ${result.bankroll}")
+            print(f"{result.name} You Won")
             print(f"Thank you {result.name}")
             print(result.update_details())
             update(result)
     elif (result.dice_result in opt_1):
         if result.player_status==result.option[0]:
             result.bankroll=result.bankroll+result.bet
-            print(f"{result.name} You Won ${result.bankroll}")
+            print(f"{result.name} You Won")
             print(f"Thank you {result.name}")
             print(result.update_details())
             update(result)
         else:
             if result.player_status==result.option[1]:
                 result.bankroll=result.bankroll-result.bet
-                print(f"{result.name} You Lost ${result.bankroll}") 
+                print(f"{result.name} You Lost") 
                 print(result.update_details())
                 update(result)
 
@@ -81,15 +81,15 @@ def odd_bets(result):# This is odd bet function, and it is invoke when dice outc
         result.bankroll=result.bankroll+result.bet
         result.bet_copy=result.bet
         print(result.update_details())
-        print(f"{result.name},You Won {result.bankroll} from the odd bet")
+        print(f"{result.name},You Won from the odd bet")
         update(result)
 
     elif(result.dice_result==7):
         result.bankroll=result.bankroll-result.bet
         result.bet=0
         print(result.update_details())
-        print(f"{result.name},You lost ${result.bankroll} to odd bet")
-        return(result(update))
+        print(f"{result.name},You lost to odd bet")
+        update(result)
     else:
         pass
 
@@ -143,7 +143,7 @@ def point_update(result):# This function is invoke when the dice outcome isn't a
         print(f"Your closing details: {result.update_details()}")
         pass
 
-    
+
 
 
 def update(result):# This function set in after the first initialization and determine if our result is come out phase or point phase
