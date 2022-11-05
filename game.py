@@ -1,5 +1,20 @@
 import Bet 
 
+points=[4,5,6,8,9,10]
+come_out=[2,3,12,7,11]
+
+def main():#The initialization function
+    start_game()
+
+def start_game():
+    result=Bet.bets()
+    if result.betting_turn()=='no':
+        print(f"Thank you Player {result.name}")
+  
+    else:
+        print(update(result))
+
+
 def come_out_phase(result): # This function is invoke when the outcome of the dice is within the range of [2,3,12,7,11]
     print(f"Game type:Crapping")
     opt_1=[7,11]
@@ -55,24 +70,6 @@ def point_phase(result):# This function is invoke when the outcome of the dice i
 
 
 
-
-points=[4,5,6,8,9,10]
-come_out=[2,3,12,7,11]
-
-def main():#The initialization function
-    start_game()
-
-def start_game():
-    result=Bet.bets()
-    if result.betting_turn()=='no':
-        print(f"Thank you Player {result.name}")
-  
-    else:
-        print(update(result))
-
-
-
-
 def odd_bets(result):# This is odd bet function, and it is invoke when dice outcome is any of the point value
     print(point,result.dice_result)
     if (result.dice_result!=point and result.dice_result!=7):
@@ -89,11 +86,21 @@ def odd_bets(result):# This is odd bet function, and it is invoke when dice outc
         result.bet=0
         print(result.update_details())
         print(f"{result.name},You lost to odd bet")
-        update(result)
+        pass_bet(result)
     else:
         pass
 
-
+def pass_bet(result):
+    pass_bet=int(input("How much do you want to bet?"))
+    while(pass_bet>result.bankroll):
+        try:
+            pass_bet=int(input(f"Your wager must be less than ${result.bankroll}.How much do you want to bet?"))
+                
+        except ValueError:
+            print("Your wager must be an integer")
+        result.bet=pass_bet
+        print(update(result))
+    
 
 
 def point_bet(result):
