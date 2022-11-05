@@ -5,9 +5,31 @@ class bets(Player.Player):
         self.allowable_odds=200
         self.option=["pass","don\'t pass"]
         self.player_status=" "
-        return(self.bet())
+        #return(self.bet())
 
-        #if self.player_status in self.option:
+    def betting_turn(self):
+        while True:
+            betting=input("Do you want to place a bet? yes/no:")
+            if betting.lower().strip()=="yes":
+                player_status=input("Where are you placing your bet,(Pass/ Don\'t Pass)?")
+                if(player_status.lower().strip() not in self.option):
+                    print("Invalid Input")
+                    continue
+                else:
+                    #(player_status.lower().strip() in self.option)   
+                    if player_status.lower().strip()==self.option[0]:
+                        self.player_status=self.option[0]
+                        print(self.bet())
+                        break
+                    else:
+                        self.player_status=self.option[1]
+                        print(self.bet())
+                        break
+            else:
+                break
+        return(betting)
+    
+        
     def bet(self):
         self.bet=int(input("How much do you want to bet?"))
         while(self.bet>self.Total):
@@ -18,8 +40,9 @@ class bets(Player.Player):
                 
             except ValueError:
                     print("Your wager must be an integer")
-            
-
+        self.bet_copy=self.bet
+        return(f"Your wager is ${self.bet}")
+    
 
     
     def passline(self):
@@ -40,27 +63,6 @@ class bets(Player.Player):
     def insufficient_fund(self):
         return((f"{self.name},Bet must be less than your bankroll which is {self.bankroll}"))
     
-    def betting_turn(self):
-        while True:
-            betting=input("Do you want to place a bet? yes/no:")
-            if betting.lower().strip()=="yes":
-                player_status=input("Where are you placing your bet,(Pass/ Don\'t Pass)?")
-                if(player_status.lower().strip() not in self.option):
-                    print("Invalid Input")
-                    continue
-                else:
-                    #(player_status.lower().strip() in self.option)   
-                    if player_status.lower().strip()==self.option[0]:
-                        self.player_status=self.option[0]
-                        print(self.passline())
-                        break
-                    else:
-                        self.player_status=self.option[1]
-                        print(self.do_not_pass())
-                        break
-            else:
-                break
-        return(betting)
                 
     def information(self):
         return({"Name":self.name,"Bankroll":self.bankroll,"Bet Status":self.betting_turn(),"Bet":self.bet})
