@@ -91,7 +91,7 @@ def odd_bets(result):# This is odd bet function, and it is invoke when dice outc
     else:
         pass
 
-def pass_bet(result):
+def pass_bet(result):# Passline function at point phase
     pass_bet=int(input("How much do you want to bet?"))
     while(pass_bet>result.bankroll):
         try:
