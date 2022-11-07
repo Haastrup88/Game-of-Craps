@@ -106,9 +106,9 @@ def pass_bet(result):# Passline function at point phase
 
 def point_bet(result):
     odd_bet=int(input("How much do you want to bet? "))
-    while(odd_bet>max_bet):
+    while(odd_bet>max_bet or odd_bet>result.bankroll):
         try:
-            odd_bet=int(input(f"Your point wager cannot be greater then ${max_bet}.How much do you want to bet?"))        
+            odd_bet=int(input(f"Your point wager must be lesser than ${max_bet}, likewise your bankroll of ${result.bankroll}.How much do you want to bet?"))        
                         
         except ValueError:
             print("Your wager must be an integer")
