@@ -6,7 +6,7 @@ class Player(Table.Table):
     def __init__(self):
         super().__init__()
         self.name=input("Enter your name:")
-        self.bankroll=int(input(f" {self.name}, How much money do you have on the table?").replace("$"," "))
+        self.bankroll=int(input(f" {self.name}, How much money do you have on the table($)?").replace("$"," "))
         #self.Total=self.bankroll
         while(self.bankroll<100): 
             try:
