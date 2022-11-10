@@ -56,7 +56,7 @@ def come_out_phase(result): # This function is invoke when the outcome of the di
 
 def point_phase(result):# This function is invoke when the outcome of the dice is within the range of [4,5,6,8,9,10]
     if (result.dice_result != 7):
-        print(result.update_details())
+        #print(result.update_details())
         print("ODD BET")
         point_update(result)
     elif(result.dice_result==7):
@@ -100,6 +100,7 @@ def pass_bet(result):# Passline function at point phase
         except ValueError:
             print("Your wager must be an integer")
     result.bet=pass_bet
+    result.bet_copy=result.bet
     print(update(result))
     
 
@@ -114,6 +115,7 @@ def point_bet(result):
         except ValueError:
             print("Your wager must be an integer")
     result.bet=odd_bet
+    
 
 
     

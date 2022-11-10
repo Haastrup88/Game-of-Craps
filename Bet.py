@@ -31,10 +31,10 @@ class bets(Player.Player):
     
         
     def bet(self):
-        self.bet=int(input("How much do you want to bet?"))
+        self.bet=int(input("How much do you want to bet($)?"))
         while(self.bet>self.Total):
             try:
-                self.bet=int(input(f"Your wager must be less than ${self.bankroll}.How much do you want to bet?"))
+                self.bet=int(input(f"Your wager must be less than ${self.bankroll}.How much do you want to bet($)?"))
 
                 #print(self.insufficient_fund())
                 
