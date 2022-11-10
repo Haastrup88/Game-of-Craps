@@ -8,8 +8,8 @@ def main():#The initialization function
 
 def start_game():
     result=Bet.bets()
-    if result.betting_turn()=='no':
-        print(f"Thank you Player {result.name}")
+    if result.betting_turn().lower().strip()=='no':
+        print(f"Thank you,{result.name}")
   
     else:
         print(update(result))
@@ -172,7 +172,7 @@ def update(result):# This function set in after the first initialization and det
             pass
       
     else:
-        print("Thank you")
+        print(f"Thank you,{result.name}")
 
         
 
