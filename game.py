@@ -56,15 +56,17 @@ def come_out_phase(result): # This function is invoke when the outcome of the di
 
 def point_phase(result):# This function is invoke when the outcome of the dice is within the range of [4,5,6,8,9,10]
     if (result.dice_result != 7):
-        #print(result.update_details())
-        print("ODD BET")
         point_update(result)
     elif(result.dice_result==7):
         if result.player_status==result.option[0]:
+            print(f"{result.player_status} loses {result.bet}")
             result.bankroll=result.bankroll-result.bet
+            print(result.update_details())
             point_update(result)
         elif(result.player_status==result.option[1]):
-            result.bankroll=result.bankroll+result.bet 
+            print(f"{result.player_status} wins {result.bet}")
+            result.bankroll=result.bankroll+result.bet
+            print(result.update_details())
             point_update(result)
         start_game()
     return(result.info())
@@ -72,24 +74,39 @@ def point_phase(result):# This function is invoke when the outcome of the dice i
 
 
 def odd_bets(result):# This is odd bet function, and it is invoke when dice outcome is any of the point value
-    print(point,result.dice_result)
+    print(f"Point state:{point}")
     if (result.dice_result!=point and result.dice_result!=7):
         point_update(result) 
     elif(result.dice_result==point):
-        result.bankroll=result.bankroll+result.bet
-        result.bet_copy=result.bet
-        print(result.update_details())
-        print(f"{result.name},You Won from the odd bet")
-        update(result)
+        if (result.player_status==result.option[0]):
+            result.bankroll=result.bankroll+result.bet
+            result.bet_copy=result.bet
+            print(result.update_details())
+            print(f"{result.player_status} wins ${result.bet}")
+            update(result)
+        elif(result.player_status==result.option[1]):
+            result.bankroll=result.bankroll-result.bet
+            result.bet_copy=result.bet
+            print(result.update_details())
+            print(f"{result.player_status} loses ${result.bet}")
+            update(result)
+        else:
+            pass
 
     elif(result.dice_result==7):
-        result.bankroll=result.bankroll-result.bet
-        result.bet=0
-        print(result.update_details())
-        print(f"{result.name},You lost to odd bet")
-        pass_bet(result)
-    else:
-        pass
+        if (result.player_status==result.option[0]):
+            result.bankroll=result.bankroll-result.bet
+            print(f"{result.player_status} loses ${result.bet}")
+            result.bet=0
+            print(result.update_details())
+            pass_bet(result)
+        elif(result.player_status==result.option[1]):
+            result.bankroll=result.bankroll+result.bet
+            result.bet_copy=result.bet
+            print(result.update_details())
+            print(f"{result.player_status} wins ${result.bet}")
+            update(result)
+
 
 def pass_bet(result):# Passline function at point phase
     pass_bet=int(input("How much do you want to bet?"))
@@ -122,22 +139,23 @@ def point_bet(result):
     
 def point_update(result):# This function is invoke when the dice outcome isn't a 7.
     global max_bet
-    if(result.bet==result.bet_copy):
-        if(point==4 or point==10):
-            print(f"You are required to place up to maximum bet of 3X of your initial bet, i.e.{3*result.bet}")
-            max_bet=3*result.bet
-            point_bet(result)
-        elif(point==5 or point==9):
-            print(f"You are required to place up to maximum bet of 4X of your initial bet, i.e. {4*result.bet}")
-            max_bet=4*result.bet
-            point_bet(result)
-        elif(point==6 or point==8):
-            print(f"You are required to place up to maximum bet of 5X of your initial bet, i.e. {5*result.bet}")
-            max_bet=5*result.bet
-            point_bet(result)
+    if(result.player_status!=result.option[1]):
+        if(result.bet==result.bet_copy):
+            if(point==4 or point==10):
+                print(f"You are required to place up to maximum bet of 3X of your initial bet, i.e.{3*result.bet}")
+                max_bet=3*result.bet
+                point_bet(result)
+            elif(point==5 or point==9):
+                print(f"You are required to place up to maximum bet of 4X of your initial bet, i.e. {4*result.bet}")
+                max_bet=4*result.bet
+                point_bet(result)
+            elif(point==6 or point==8):
+                print(f"You are required to place up to maximum bet of 5X of your initial bet, i.e. {5*result.bet}")
+                max_bet=5*result.bet
+                point_bet(result)
 
-        else:
-            pass
+            else:
+                pass
         
     rolling=input("Are you ready to roll, Yes/No?:")
     if(rolling.lower().strip()=='yes'):
