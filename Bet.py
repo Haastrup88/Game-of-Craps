@@ -19,18 +19,18 @@ class bets(Player.Player):
                     #(player_status.lower().strip() in self.option)   
                     if player_status.lower().strip()==self.option[0]:
                         self.player_status=self.option[0]
-                        print(self.bet())
+                        self.betss()
                         break
                     else:
                         self.player_status=self.option[1]
-                        print(self.bet())
+                        self.betss()
                         break
             else:
                 break
         return(betting)
     
         
-    def bet(self):
+    def betss(self):
         self.bet=int(input("How much do you want to bet($)?"))
         while(self.bet>self.Total):
             try:

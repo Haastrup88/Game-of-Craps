@@ -10,10 +10,10 @@ def start_game():
     result=Bet.bets()
     if result.betting_turn().lower().strip()=='no':
         print(f"Thank you,{result.name}")
+        pass
   
     else:
         print(update(result))
-
 
 def come_out_phase(result): # This function is invoke when the outcome of the dice is within the range of [2,3,12,7,11]
     print(f"Game type:Crapping")
@@ -22,27 +22,25 @@ def come_out_phase(result): # This function is invoke when the outcome of the di
     if result.dice_result in opt_2:
         if result.player_status==result.option[0]:
             result.bankroll=result.bankroll-result.bet
-            print(f"{result.name} You Lost")
+            print(f"{result.player_status} loses {result.bet}")
             print(result.update_details())
             update(result)
         elif((result.player_status==result.option[1])):
             result.bankroll=result.bankroll+result.bet
-            print(f"{result.name} You Won")
-            print(f"Thank you {result.name}")
+            print(f"{result.player_status} Wins {result.bet}")
             print(result.update_details())
             update(result)
 
     elif (result.dice_result in opt_1):
         if result.player_status==result.option[0]:
             result.bankroll=result.bankroll+result.bet
-            print(f"{result.name} You Won")
-            print(f"Thank you {result.name}")
+            print(f"{result.player_status} Wins {result.bet}")
             print(result.update_details())
             update(result)
         else:
             if result.player_status==result.option[1]:
                 result.bankroll=result.bankroll-result.bet
-                print(f"{result.name} You Lost") 
+                print(f"{result.player_status} loses {result.bet}")
                 print(result.update_details())
                 update(result)
 
@@ -61,8 +59,10 @@ def point_phase(result):# This function is invoke when the outcome of the dice i
         if result.player_status==result.option[0]:
             print(f"{result.player_status} loses {result.bet}")
             result.bankroll=result.bankroll-result.bet
+            result.bet=0
             print(result.update_details())
-            point_update(result)
+            #print(result.betting_turn())
+            pass_bet(result)
         elif(result.player_status==result.option[1]):
             print(f"{result.player_status} wins {result.bet}")
             result.bankroll=result.bankroll+result.bet
@@ -86,10 +86,11 @@ def odd_bets(result):# This is odd bet function, and it is invoke when dice outc
             update(result)
         elif(result.player_status==result.option[1]):
             result.bankroll=result.bankroll-result.bet
-            result.bet_copy=result.bet
+            result.bet=0
             print(result.update_details())
             print(f"{result.player_status} loses ${result.bet}")
-            update(result)
+            pass_bet(result)
+            #print(result.betting_turn())
         else:
             pass
 
@@ -100,6 +101,7 @@ def odd_bets(result):# This is odd bet function, and it is invoke when dice outc
             result.bet=0
             print(result.update_details())
             pass_bet(result)
+            #print(result.betting_turn())
         elif(result.player_status==result.option[1]):
             result.bankroll=result.bankroll+result.bet
             result.bet_copy=result.bet
@@ -108,17 +110,16 @@ def odd_bets(result):# This is odd bet function, and it is invoke when dice outc
             update(result)
 
 
+
+
 def pass_bet(result):# Passline function at point phase
-    pass_bet=int(input("How much do you want to bet?"))
-    while(pass_bet>result.bankroll):
-        try:
-            pass_bet=int(input(f"Your wager must be less than ${result.bankroll}.How much do you want to bet?"))
-                
-        except ValueError:
-            print("Your wager must be an integer")
-    result.bet=pass_bet
-    result.bet_copy=result.bet
-    print(update(result))
+    result2=result.betting_turn()
+    if result2.lower().strip()=='no':
+        print(f"Thank you,{result.name}")
+        pass
+  
+    else:
+        print(update(result))
     
 
 
