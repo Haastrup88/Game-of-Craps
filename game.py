@@ -22,25 +22,25 @@ def come_out_phase(result): # This function is invoke when the outcome of the di
     if result.dice_result in opt_2:
         if result.player_status==result.option[0]:
             result.bankroll=result.bankroll-result.bet
-            print(f"{result.player_status} Lost ${result.bet}")
+            print(f"{result.player_status} line Lost ${result.bet}")
             print(result.update_details())
             update(result)
         elif((result.player_status==result.option[1])):
             result.bankroll=result.bankroll+result.bet
-            print(f"{result.player_status} Won ${result.bet}")
+            print(f"{result.player_status} line Won ${result.bet}")
             print(result.update_details())
             update(result)
 
     elif (result.dice_result in opt_1):
         if result.player_status==result.option[0]:
             result.bankroll=result.bankroll+result.bet
-            print(f"{result.player_status} Won ${result.bet}")
+            print(f"{result.player_status} line Won ${result.bet}")
             print(result.update_details())
             update(result)
         else:
             if result.player_status==result.option[1]:
                 result.bankroll=result.bankroll-result.bet
-                print(f"{result.player_status} Lost ${result.bet}")
+                print(f"{result.player_status} line Lost ${result.bet}")
                 print(result.update_details())
                 update(result)
 
@@ -57,14 +57,14 @@ def point_phase(result):# This function is invoke when the outcome of the dice i
         point_update(result)
     elif(result.dice_result==7):
         if result.player_status==result.option[0]:
-            print(f"{result.player_status} Lost {result.bet}")
+            print(f"{result.player_status} line Lost {result.bet}")
             result.bankroll=result.bankroll-result.bet
             result.bet=0
             print(result.update_details())
             #print(result.betting_turn())
             pass_bet(result)
         elif(result.player_status==result.option[1]):
-            print(f"{result.player_status} Won {result.bet}")
+            print(f"{result.player_status} line Won {result.bet}")
             result.bankroll=result.bankroll+result.bet
             print(result.update_details())
             point_update(result)
@@ -80,13 +80,13 @@ def odd_bets(result):# This is odd bet function, and it is invoke when dice outc
         if (result.player_status==result.option[0]):
             result.bankroll=result.bankroll+result.bet
             result.bet_copy=result.bet
-            print(f"{result.player_status} Won ${result.bet}")
+            print(f"{result.player_status}line nWon ${result.bet}")
             print(result.update_details())
             update(result)
         elif(result.player_status==result.option[1]):
             result.bankroll=result.bankroll-result.bet
             result.bet=0
-            print(f"{result.player_status} Lost ${result.bet}")
+            print(f"{result.player_status} line Lost ${result.bet}")
             print(result.update_details())
             pass_bet(result)
             #print(result.betting_turn())
@@ -96,14 +96,14 @@ def odd_bets(result):# This is odd bet function, and it is invoke when dice outc
     elif(result.dice_result==7):
         if (result.player_status==result.option[0]):
             result.bankroll=result.bankroll-result.bet
-            print(f"{result.player_status} Lost ${result.bet}")
+            print(f"{result.player_status} line Lost ${result.bet}")
             result.bet=0
             print(result.update_details())
             pass_bet(result)
         elif(result.player_status==result.option[1]):
             result.bankroll=result.bankroll+result.bet
             result.bet_copy=result.bet
-            print(f"{result.player_status} Won ${result.bet}")
+            print(f"{result.player_status} line Won ${result.bet}")
             update(result)
 
 
