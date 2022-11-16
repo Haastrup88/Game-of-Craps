@@ -5,7 +5,7 @@ class bets(Player.Player):
         self.allowable_odds=200
         self.option=["pass","don\'t pass"]
         self.player_status=" "
-        #return(self.bet())
+    
 
     def betting_turn(self):
         while True:
@@ -15,8 +15,7 @@ class bets(Player.Player):
                 if(player_status.lower().strip() not in self.option):
                     print("Invalid Input")
                     continue
-                else:
-                    #(player_status.lower().strip() in self.option)   
+                else:  
                     if player_status.lower().strip()==self.option[0]:
                         self.player_status=self.option[0]
                         self.betss()
@@ -58,7 +57,6 @@ class bets(Player.Player):
         return(f"Your bet is {self.bet}")
         
     def info(self):
-        #print(f"Your bet is{self.bet}, and type is {type(self.bet)}")
         return(f"Status: {self.information}")
     
     def insufficient_fund(self):

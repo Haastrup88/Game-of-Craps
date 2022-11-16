@@ -7,12 +7,10 @@ class Player(Table.Table):
         super().__init__()
         self.name=input("Enter your name:")
         self.bankroll=int(input(f" {self.name}, How much money do you have on the table($)?").replace("$"," "))
-        #self.Total=self.bankroll
         while(self.bankroll<100): 
             try:
                 print("Bankroll must at least $100 ")
                 self.bankroll=int(input(f" {self.name}, How much money do you have on the table?").replace("$"," "))
-                #self.Total=self.bankroll
                     
             except ValueError:
                 print("Bankroll is not convertible into a dollar amount")

@@ -61,7 +61,6 @@ def point_phase(result):# This function is invoke when the outcome of the dice i
             result.bankroll=result.bankroll-result.bet
             result.bet=0
             print(result.update_details())
-            #print(result.betting_turn())
             pass_bet(result)
         elif(result.player_status==result.option[1]):
             print(f"{result.player_status} line Won {result.bet}")
@@ -80,7 +79,7 @@ def odd_bets(result):# This is odd bet function, and it is invoke when dice outc
         if (result.player_status==result.option[0]):
             result.bankroll=result.bankroll+result.bet
             result.bet_copy=result.bet
-            print(f"{result.player_status}line nWon ${result.bet}")
+            print(f"{result.player_status} line Won ${result.bet}")
             print(result.update_details())
             update(result)
         elif(result.player_status==result.option[1]):
@@ -89,7 +88,6 @@ def odd_bets(result):# This is odd bet function, and it is invoke when dice outc
             print(f"{result.player_status} line Lost ${result.bet}")
             print(result.update_details())
             pass_bet(result)
-            #print(result.betting_turn())
         else:
             pass
 
