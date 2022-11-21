@@ -3,6 +3,8 @@ import Bet
 points=[4,5,6,8,9,10]
 come_out=[2,3,12,7,11]
 
+print("Designed by Haastrup Adebayo Ibukun")
+
 def main():#The initialization function
     start_game()
 
@@ -84,8 +86,8 @@ def odd_bets(result):# This is odd bet function, and it is invoke when dice outc
             update(result)
         elif(result.player_status==result.option[1]):
             result.bankroll=result.bankroll-result.bet
-            result.bet=0
             print(f"{result.player_status} line Lost ${result.bet}")
+            result.bet=0
             print(result.update_details())
             pass_bet(result)
         else:
